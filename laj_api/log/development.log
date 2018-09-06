@@ -45,3 +45,83 @@ Migrating to CreateUsers (20180906134128)
   ↳ db/seeds.rb:20
   [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
   ↳ db/seeds.rb:20
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1235499299732795475)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateStickyNotes (20180906140832)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (21.5ms)[0m  [1m[35mCREATE TABLE "sticky_notes" ("id" bigserial primary key, "jobListing_url" character varying, "company" character varying, "title" character varying, "location" character varying, "app_status" character varying, "notes" text, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_81370c4dce"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20180906140832_create_sticky_notes.rb:3
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX  "index_sticky_notes_on_user_id" ON "sticky_notes"  ("user_id")[0m
+  ↳ db/migrate/20180906140832_create_sticky_notes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180906140832"]]
+  ↳ bin/rails:9
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1235499299732795475)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "a@a.com"], ["password_digest", "$2a$10$3C4en46rcEwqlCeYnXT2luEQPLmdu6STrupVLsip0cC0I4I7vkXtq"], ["admin", true], ["created_at", "2018-09-06 14:12:00.738972"], ["updated_at", "2018-09-06 14:12:00.738972"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:20
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "b@b.com"], ["password_digest", "$2a$10$mppo.pUFPACz7WZMyk11uuZaTl2UP5LuuKPj6S99BgqiMFtih/jK2"], ["created_at", "2018-09-06 14:12:00.825512"], ["updated_at", "2018-09-06 14:12:00.825512"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "a@a.com"], ["password_digest", "$2a$10$b7gHOw.FinOTns8vjzEsruW/tmMzlANznoPJubwA5x3X1WrN3LXz."], ["admin", true], ["created_at", "2018-09-06 14:13:13.789475"], ["updated_at", "2018-09-06 14:13:13.789475"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:20
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "b@b.com"], ["password_digest", "$2a$10$McTDx0i2VAy/7KfDoVpWlutyZfcFLiug6RDFeFIw8l1DMQk4fvJ7a"], ["created_at", "2018-09-06 14:13:13.865988"], ["updated_at", "2018-09-06 14:13:13.865988"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:30
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:30
+  [1m[36mStickyNote Create (1.1ms)[0m  [1m[32mINSERT INTO "sticky_notes" ("jobListing_url", "company", "title", "location", "app_status", "notes", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["jobListing_url", "generalasemb.ly"], ["company", "GA"], ["title", "Student"], ["location", "NYC"], ["app_status", "Accepted"], ["notes", "WDI Lambda"], ["user_id", 1], ["created_at", "2018-09-06 14:13:13.907507"], ["updated_at", "2018-09-06 14:13:13.907507"]]
+  ↳ db/seeds.rb:30
+  [1m[35m (9.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:30
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:40
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:40
+  [1m[36mStickyNote Create (0.5ms)[0m  [1m[32mINSERT INTO "sticky_notes" ("jobListing_url", "company", "title", "location", "app_status", "notes", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["jobListing_url", "generalasemb.ly"], ["company", "GA"], ["title", "Student"], ["location", "Boston"], ["app_status", "Rejected"], ["notes", "WDI"], ["user_id", 2], ["created_at", "2018-09-06 14:13:13.921631"], ["updated_at", "2018-09-06 14:13:13.921631"]]
+  ↳ db/seeds.rb:40
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:40
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:50
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:50
+  [1m[36mStickyNote Create (0.5ms)[0m  [1m[32mINSERT INTO "sticky_notes" ("jobListing_url", "company", "title", "location", "app_status", "notes", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["jobListing_url", "generalasemb.ly"], ["company", "GA"], ["title", "Student"], ["location", "SF"], ["app_status", "Accepted"], ["notes", "WDI"], ["user_id", 2], ["created_at", "2018-09-06 14:13:13.930796"], ["updated_at", "2018-09-06 14:13:13.930796"]]
+  ↳ db/seeds.rb:50
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:50

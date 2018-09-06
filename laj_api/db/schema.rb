@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_06_134128) do
+ActiveRecord::Schema.define(version: 2018_09_06_140832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "sticky_notes", force: :cascade do |t|
+    t.string "jobListing_url"
+    t.string "company"
+    t.string "title"
+    t.string "location"
+    t.string "app_status"
+    t.text "notes"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sticky_notes_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -23,4 +36,5 @@ ActiveRecord::Schema.define(version: 2018_09_06_134128) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "sticky_notes", "users"
 end

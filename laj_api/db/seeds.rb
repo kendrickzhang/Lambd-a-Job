@@ -18,3 +18,33 @@ user.email = 'b@b.com'
 user.password = 'b'
 user.password_confirmation = 'b'
 user.save
+
+sticky_note = StickyNote.new
+sticky_note.jobListing_url = 'generalasemb.ly'
+sticky_note.company = 'GA'
+sticky_note.title = 'Student'
+sticky_note.location = 'NYC'
+sticky_note.notes = 'WDI Lambda'
+sticky_note.app_status = 'Accepted'
+sticky_note.user_id = 1
+sticky_note.save
+
+sticky_note = StickyNote.new
+sticky_note.jobListing_url = 'generalasemb.ly'
+sticky_note.company = 'GA'
+sticky_note.title = 'Student'
+sticky_note.location = 'Boston'
+sticky_note.notes = 'WDI'
+sticky_note.app_status = 'Rejected'
+sticky_note.user_id = 2
+sticky_note.save
+
+sticky_note = StickyNote.new
+sticky_note.jobListing_url = 'generalasemb.ly'
+sticky_note.company = 'GA'
+sticky_note.title = 'Student'
+sticky_note.location = 'SF'
+sticky_note.notes = 'WDI'
+sticky_note.app_status = 'Accepted'
+sticky_note.user_id = 2
+sticky_note.save
