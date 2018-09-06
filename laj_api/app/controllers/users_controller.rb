@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @hashMe = BCrypt::Password.create(user_params[:password])
+    @user = User.new(
+      email: user_params[:email],
+      password_digest: @hashMe
+    )
 
     if @user.save
       render json: @user, status: :created, location: @user
@@ -45,6 +49,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :password_digest, :admin)
+      params.require(:user).permit(:email, :password, :admin)
     end
 end

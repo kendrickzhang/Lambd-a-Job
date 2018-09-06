@@ -5,13 +5,13 @@ import UserRegistrationForm from './components/UserRegistrationForm';
 class App extends Component {
   constructor() {
     super();
-
     this.state = {
       sticky_notes: [],
       email: '',
       password:'',
       isLoggedIn: null,
-    };
+    }
+
     this.getNotes = this.getNotes.bind(this)
     this.logout = this.logout.bind(this)
     this.login = this.login.bind(this)
