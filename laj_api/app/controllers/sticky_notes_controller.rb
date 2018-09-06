@@ -1,4 +1,5 @@
 class StickyNotesController < ApplicationController
+  before_action :authenticate_user
   before_action :set_sticky_note, only: [:show, :update, :destroy]
 
   # GET /sticky_notes
