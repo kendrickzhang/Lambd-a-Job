@@ -15,7 +15,7 @@ class StickyNotesController < ApplicationController
 
   # POST /sticky_notes
   def create
-    @sticky_note = StickyNote.new(sticky_note_params)
+    @sticky_note = StickyNote.new(sticky_note_params.merge(user: current_user))
 
     if @sticky_note.save
       render json: @sticky_note, status: :created, location: @sticky_note

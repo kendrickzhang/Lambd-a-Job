@@ -21,12 +21,20 @@ class UserRegistrationForm extends Component {
 
     registerUser() {
         const url = `http://localhost:3000/users`;
-        const body = { "user": { "email": this.state.email, "password": this.state.password } }
-        const init = { 
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-        mode: 'cors',
-        body:JSON.stringify(body),
+        const body = {
+            "user": {
+                "email": this.state.email,
+                "password": this.state.password
+            }
+        }
+        const init = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            mode: 'cors',
+            body:JSON.stringify(body),
         }
 
         fetch(url, init)
@@ -37,7 +45,6 @@ class UserRegistrationForm extends Component {
 
     handleSubmit(evt) {
         evt.preventDefault();
-
         this.registerUser();
     }
 

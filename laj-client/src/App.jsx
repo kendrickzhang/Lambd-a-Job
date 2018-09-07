@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import UserRegistrationForm from './components/UserRegistrationForm';
+import CreateStickyNote from './components/CreateStickyNote';
+import EditStickyNote from './components/EditStickyNote';
+import DeleteStickyNote from './components/DeleteStickyNote';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       sticky_notes: [],
       email: '',
@@ -76,7 +79,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getNotes(),
+    this.getNotes()
     this.isLoggedIn()
   }
 
@@ -124,6 +127,9 @@ class App extends Component {
           { display }
 
           <UserRegistrationForm />
+          <CreateStickyNote />
+          <EditStickyNote />
+          <DeleteStickyNote />
       </div>
     );
   }
