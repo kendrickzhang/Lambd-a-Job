@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
-import UserRegistrationForm from './components/UserRegistrationForm';
-import CreateStickyNote from './components/CreateStickyNote';
-import EditStickyNote from './components/EditStickyNote';
-import DeleteStickyNote from './components/DeleteStickyNote';
+
+import {
+  registerUser,
+  userLogin,
+  fetchAllStickyNotes,
+  fetchOneStickyNote
+}
+from './services/api';
+
+import UserRegistrationForm   from './components/UserRegistrationForm';
+import UserLoginForm          from './components/UserLoginForm';
+import ShowAllStickyNotes     from './components/ShowAllStickyNotes';
+import ShowOneStickyNote      from './components/ShowOneStickyNote';
+import CreateStickyNote       from './components/CreateStickyNote';
+import EditStickyNote         from './components/EditStickyNote';
+import DeleteStickyNote       from './components/DeleteStickyNote';
 
 class App extends Component {
   constructor(props) {
@@ -15,12 +27,16 @@ class App extends Component {
       isLoggedIn: null,
     }
 
-    this.getNotes = this.getNotes.bind(this)
-    this.logout = this.logout.bind(this)
-    this.login = this.login.bind(this)
-    this.isLoggedIn = this.isLoggedIn.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.getNotes = this.getNotes.bind(this);
+    
+    this.registerUser = this.registerUser.bind(this);
+    this.login = this.login.bind(this);
+    this.isLoggedIn = this.isLoggedIn.bind(this);
+    this.logout = this.logout.bind(this);
   }
+
+
 
   getNotes() {
     const jwt = localStorage.getItem("jwt")
@@ -39,6 +55,30 @@ class App extends Component {
     this.setState({
       [evt.target.name]: evt.target.value
     })
+  }
+
+  registerUser() {
+    const url = `http://localhost:3000/users`;
+    const body = {
+        "user": {
+            "email": this.state.email,
+            "password": this.state.password
+        }
+    }
+    const init = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        mode: 'cors',
+        body:JSON.stringify(body),
+    }
+
+    fetch(url, init)
+        .then(res => res.json())
+        .then(alert(`Welcome ${this.state.email}`))
+        .catch(err => console.log(err));
   }
 
 // isLoggedIn(), logout(), login() are supplied from https://git.generalassemb.ly/wdi-nyc-lambda/react-rails-token-auth
@@ -90,46 +130,37 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Hello Kendrick</h1>
-        <form>
-          <label htmlFor="email">Email: </label>
-          <br />
-          <input
-            name="email"
-            onChange={this.handleChange}
-            value={this.state.email}
-            type="email"
-          />
-          <br /><br />
-          <label htmlFor="password">Password:</label>
-          <br />
-          <input
-            name="password"
-            onChange={this.handleChange}
-            value={this.state.value}
-            type="password"
-          />
-          </form>
-          <br />
+        <div>{ display }</div>
+        <UserRegistrationForm
+          onChange={this.handleChange}
+          email={this.state.email}
+          password={this.state.password}
+          registerUser={this.registerUser}
+        />
+        <UserLoginForm
+          onChange={this.handleChange}
+          email={this.state.email}
+          password={this.state.password}
+          login={this.login}
+          logout={this.logout}
+        />
+        <div>
+          <ShowAllStickyNotes />
+        </div>
+        <div>
+          <ShowOneStickyNote />
+        </div>
+        <CreateStickyNote
+          onChange={this.handleChange}
+        />
+        <EditStickyNote
+          onChange={this.handleChange}
+        />
+        <DeleteStickyNote
+          onChange={this.handleChange}
+        />
 
-          <button onClick={this.login}>
-          Login
-          </button>
-
-          <button onClick={this.logout}>
-          Logout
-          </button>
-
-          <button onClick={this.getNotes}>
-          Get Notes
-          </button>
-
-          { display }
-
-          <UserRegistrationForm />
-          <CreateStickyNote />
-          <EditStickyNote />
-          <DeleteStickyNote />
+        <button onClick={this.getNotes}>Get Notes</button>
       </div>
     );
   }

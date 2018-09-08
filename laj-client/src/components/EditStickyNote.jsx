@@ -98,7 +98,6 @@ class EditStickyNote extends Component {
                 <textarea
                     placeholder="Notes"
                     name="notes"
-                    id="notes"
                     cols="30"
                     rows="10"
                     value={this.state.notes}

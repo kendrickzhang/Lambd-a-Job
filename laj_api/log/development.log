@@ -1607,3 +1607,358 @@ Processing by StickyNotesController#index as */*
 Completed 200 OK in 9ms (Views: 5.6ms | ActiveRecord: 1.3ms)
 
 
+  [1m[35m (3.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "laj_api_development"[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "laj_api_test"[0m
+  ↳ bin/rails:9
+  [1m[35m (380.7ms)[0m  [1m[35mCREATE DATABASE "laj_api_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (259.4ms)[0m  [1m[35mCREATE DATABASE "laj_api_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (15.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1235499299732795475)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20180906134128)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (19.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "admin" boolean DEFAULT FALSE, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180906134128_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180906134128"]]
+  ↳ bin/rails:9
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateStickyNotes (20180906140832)
+  [1m[35m (6.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (16.5ms)[0m  [1m[35mCREATE TABLE "sticky_notes" ("id" bigserial primary key, "jobListing_url" character varying, "company" character varying, "title" character varying, "location" character varying, "app_status" character varying, "notes" text, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_81370c4dce"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  ↳ db/migrate/20180906140832_create_sticky_notes.rb:3
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE  INDEX  "index_sticky_notes_on_user_id" ON "sticky_notes"  ("user_id")[0m
+  ↳ db/migrate/20180906140832_create_sticky_notes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180906140832"]]
+  ↳ bin/rails:9
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-09-08 18:36:15.989427"], ["updated_at", "2018-09-08 18:36:15.989427"]]
+  ↳ bin/rails:9
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1235499299732795475)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "a@a.com"], ["password_digest", "$2a$10$ccDX/IgbJinQVRrYCfKvPOPKrmuHHD8doTBpSESmaLwrS8ztL119a"], ["admin", true], ["created_at", "2018-09-08 18:36:29.741933"], ["updated_at", "2018-09-08 18:36:29.741933"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:20
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "b@b.com"], ["password_digest", "$2a$10$X5wt1GvkIXRRS7VNeFm2euUc4CNT2wEd12X3.4Mm8TEvfX4iV4a8u"], ["created_at", "2018-09-08 18:36:29.818322"], ["updated_at", "2018-09-08 18:36:29.818322"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:30
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:30
+  [1m[36mStickyNote Create (1.1ms)[0m  [1m[32mINSERT INTO "sticky_notes" ("jobListing_url", "company", "title", "location", "app_status", "notes", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["jobListing_url", "generalasemb.ly"], ["company", "GA"], ["title", "Student"], ["location", "NYC"], ["app_status", "Accepted"], ["notes", "WDI Lambda"], ["user_id", 1], ["created_at", "2018-09-08 18:36:29.842899"], ["updated_at", "2018-09-08 18:36:29.842899"]]
+  ↳ db/seeds.rb:30
+  [1m[35m (5.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:30
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:40
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:40
+  [1m[36mStickyNote Create (0.5ms)[0m  [1m[32mINSERT INTO "sticky_notes" ("jobListing_url", "company", "title", "location", "app_status", "notes", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["jobListing_url", "generalasemb.ly"], ["company", "GA"], ["title", "Student"], ["location", "Boston"], ["app_status", "Rejected"], ["notes", "WDI"], ["user_id", 2], ["created_at", "2018-09-08 18:36:29.852567"], ["updated_at", "2018-09-08 18:36:29.852567"]]
+  ↳ db/seeds.rb:40
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:40
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:50
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:50
+  [1m[36mStickyNote Create (0.7ms)[0m  [1m[32mINSERT INTO "sticky_notes" ("jobListing_url", "company", "title", "location", "app_status", "notes", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["jobListing_url", "generalasemb.ly"], ["company", "GA"], ["title", "Student"], ["location", "SF"], ["app_status", "Accepted"], ["notes", "WDI"], ["user_id", 2], ["created_at", "2018-09-08 18:36:29.858754"], ["updated_at", "2018-09-08 18:36:29.858754"]]
+  ↳ db/seeds.rb:50
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:50
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 14:43:34 -0400
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.9ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 107ms (Views: 46.7ms | ActiveRecord: 27.0ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 14:49:04 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.6ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 46ms (Views: 18.0ms | ActiveRecord: 10.9ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 14:49:13 -0400
+Processing by StickyNotesController#index as */*
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/user_token" for 127.0.0.1 at 2018-09-08 14:49:18 -0400
+Processing by UserTokenController#create as JSON
+  Parameters: {"auth"=>{"email"=>"a@a.com", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"email"=>"a@a.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (6.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "a@a.com"], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 201 Created in 108ms (Views: 0.4ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 14:49:18 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/sticky_notes" for 127.0.0.1 at 2018-09-08 14:49:25 -0400
+Processing by StickyNotesController#create as JSON
+  Parameters: {"sticky_note"=>{"jobListing_url"=>"", "company"=>"a", "title"=>"", "location"=>"a", "app_status"=>"", "notes"=>""}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sticky_notes_controller.rb:20
+  [1m[36mStickyNote Create (0.9ms)[0m  [1m[32mINSERT INTO "sticky_notes" ("jobListing_url", "company", "title", "location", "app_status", "notes", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["jobListing_url", ""], ["company", "a"], ["title", ""], ["location", "a"], ["app_status", ""], ["notes", ""], ["user_id", 1], ["created_at", "2018-09-08 18:49:25.903178"], ["updated_at", "2018-09-08 18:49:25.903178"]]
+  ↳ app/controllers/sticky_notes_controller.rb:20
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sticky_notes_controller.rb:20
+Completed 201 Created in 30ms (Views: 1.8ms | ActiveRecord: 7.3ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 14:49:38 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.4ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 18ms (Views: 14.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 14:55:55 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.8ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 8ms (Views: 3.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 14:56:09 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.4ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 7ms (Views: 2.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:13:15 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:15:13 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 7ms (Views: 3.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:15:57 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 6ms (Views: 2.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:18:20 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 6ms (Views: 3.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:19:53 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.6ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 7ms (Views: 3.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:21:16 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.4ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:26:03 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 5ms (Views: 2.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:28:47 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:29:55 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 6ms (Views: 3.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:30:17 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 6ms (Views: 2.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:30:41 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.4ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 6ms (Views: 3.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:32:25 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.6ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:38:41 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (1.4ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 10ms (Views: 5.6ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:39:07 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:42:33 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 6ms (Views: 2.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 15:42:59 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 6ms (Views: 3.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 16:11:28 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.9ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 7ms (Views: 2.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 16:17:34 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.8ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 8ms (Views: 2.9ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 16:17:49 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 8ms (Views: 2.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-08 16:18:24 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.5ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 7ms (Views: 3.6ms | ActiveRecord: 1.1ms)
+
+

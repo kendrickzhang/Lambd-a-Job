@@ -1,7 +1,7 @@
 import React from 'react';
 
 function UserRegistrationForm(props) {
-    function handleSubmit(evt) {
+    handleSubmit(evt) {
         evt.preventDefault();
         props.registerUser();
     }
@@ -14,14 +14,14 @@ function UserRegistrationForm(props) {
                     placeholder="Email"
                     name="email"
                     value={props.email}
-                    onChange={props.onChange}
+                    onChange={props.handleChange}
                 />
                 <input
                     type="password"
                     placeholder="Password"
                     name="password"
                     value={props.password}
-                    onChange={props.onChange}
+                    onChange={props.handleChange}
                 />
                 <button>Register</button>
             </form>
