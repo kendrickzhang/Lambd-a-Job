@@ -1,54 +1,39 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import {
-  registerUser,
-  userLogin,
-  fetchAllStickyNotes,
-  fetchOneStickyNote
-}
-from './services/api';
-
-import UserRegistrationForm   from './components/UserRegistrationForm';
-import UserLoginForm          from './components/UserLoginForm';
-import ShowAllStickyNotes     from './components/ShowAllStickyNotes';
-import ShowOneStickyNote      from './components/ShowOneStickyNote';
-import CreateStickyNote       from './components/CreateStickyNote';
-import EditStickyNote         from './components/EditStickyNote';
-import DeleteStickyNote       from './components/DeleteStickyNote';
+import UserRegistrationForm    from './components/UserRegistrationForm';
+import UserLoginForm           from './components/UserLoginForm';
+import CreateStickyNote        from './components/CreateStickyNote';
+import EditStickyNote          from './components/EditStickyNote';
+import DeleteStickyNote        from './components/DeleteStickyNote';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       sticky_notes: [],
+      current_note: {},
       email: '',
       password:'',
       isLoggedIn: null,
+      currentView: '',
+      create_note: '',
+      modify_note: '',
     }
 
     this.handleChange = this.handleChange.bind(this);
-    this.getNotes = this.getNotes.bind(this);
     
     this.registerUser = this.registerUser.bind(this);
     this.login = this.login.bind(this);
     this.isLoggedIn = this.isLoggedIn.bind(this);
     this.logout = this.logout.bind(this);
+
+    this.getNotes = this.getNotes.bind(this);
   }
 
-
-
-  getNotes() {
-    const jwt = localStorage.getItem("jwt")
-    const init = { 
-      headers: {"Authorization": `Bearer ${jwt}`}
-    }
-    fetch(`http://localhost:3000/sticky_notes`, init)
-    .then(res => res.json())
-    .then(data => this.setState({
-      sticky_notes: data,
-    }))
-    .catch(err => err)
+  componentDidMount() {
+    this.getNotes()
+    this.isLoggedIn()
   }
 
   handleChange(evt) {
@@ -77,27 +62,11 @@ class App extends Component {
 
     fetch(url, init)
         .then(res => res.json())
-        .then(alert(`Welcome ${this.state.email}`))
+        .then(() => this.login())
         .catch(err => console.log(err));
   }
-
-// isLoggedIn(), logout(), login() are supplied from https://git.generalassemb.ly/wdi-nyc-lambda/react-rails-token-auth
-  isLoggedIn() {
-    const res = !!(localStorage.getItem("jwt"));
-    this.setState({
-      isLoggedIn: res,
-    })
-    return res;
-  }
-
-  logout() {
-    localStorage.removeItem("jwt")
-    this.setState({
-      sticky_notes: [],
-      isLoggedIn: false,
-    })
-  }
-
+  
+  // isLoggedIn(), logout(), login() are supplied from https://git.generalassemb.ly/wdi-nyc-lambda/react-rails-token-auth
   login() {
     const url = `http://localhost:3000/user_token`;
     const body = { "auth": { "email": this.state.email, "password": this.state.password } }
@@ -117,10 +86,34 @@ class App extends Component {
     .then(() => this.getNotes())
     .catch(err => console.log(err))
   }
+  
+  isLoggedIn() {
+    const res = !!(localStorage.getItem("jwt"));
+    this.setState({
+      isLoggedIn: res,
+    })
+    return res;
+  }
 
-  componentDidMount() {
-    this.getNotes()
-    this.isLoggedIn()
+  logout() {
+    localStorage.removeItem("jwt")
+    this.setState({
+      sticky_notes: [],
+      isLoggedIn: false,
+    })
+  }
+
+  getNotes() {
+    const jwt = localStorage.getItem("jwt")
+    const init = { 
+      headers: {"Authorization": `Bearer ${jwt}`}
+    }
+    fetch(`http://localhost:3000/sticky_notes`, init)
+    .then(res => res.json())
+    .then(data => this.setState({
+      sticky_notes: data,
+    }))
+    .catch(err => err)
   }
 
   render() {
@@ -131,36 +124,24 @@ class App extends Component {
     return (
       <div className="App">
         <div>{ display }</div>
-        <UserRegistrationForm
+        <div>
+          <UserRegistrationForm
           onChange={this.handleChange}
           email={this.state.email}
           password={this.state.password}
           registerUser={this.registerUser}
-        />
-        <UserLoginForm
+          login={this.login}
+          />
+        </div>
+        <div>
+          <UserLoginForm
           onChange={this.handleChange}
           email={this.state.email}
           password={this.state.password}
           login={this.login}
           logout={this.logout}
-        />
-        <div>
-          <ShowAllStickyNotes />
+          />
         </div>
-        <div>
-          <ShowOneStickyNote />
-        </div>
-        <CreateStickyNote
-          onChange={this.handleChange}
-        />
-        <EditStickyNote
-          onChange={this.handleChange}
-        />
-        <DeleteStickyNote
-          onChange={this.handleChange}
-        />
-
-        <button onClick={this.getNotes}>Get Notes</button>
       </div>
     );
   }

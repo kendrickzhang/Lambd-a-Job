@@ -1,6 +1,16 @@
 import React from 'react';
 
 function UserLoginForm(props) {
+    function handleLogin(evt) {
+        evt.preventDefault();
+        props.login();
+    }
+
+    function handleLogout(evt) {
+        evt.preventDefault();
+        props.logout();
+    }
+
     return (
         <div>
             <form>
@@ -13,7 +23,6 @@ function UserLoginForm(props) {
                     type="email"
                 />
                 <label htmlFor="password">Password:</label>
-                <br />
                 <input
                     name="password"
                     id="password"
@@ -21,10 +30,11 @@ function UserLoginForm(props) {
                     value={props.value}
                     type="password"
                 />
-                <button onClick={props.login}>Login</button>
-                <button onClick={props.logout}>Logout</button>
+                <button onClick={(evt) => handleLogin(evt)}>Login</button>
+                <button onClick={(evt) => handleLogout(evt)}>Logout</button>
             </form>
         </div>
     );
 }
+
 export default UserLoginForm;

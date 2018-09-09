@@ -8,7 +8,7 @@ function UserRegistrationForm(props) {
 
     return (
         <div>
-            <form onSubmit={ () => { handleSubmit() } }>
+            <form>
                 <input
                     type="email"
                     placeholder="Email"
@@ -23,7 +23,7 @@ function UserRegistrationForm(props) {
                     value={props.password}
                     onChange={props.onChange}
                 />
-                <button>Register</button>
+                <button onClick={(evt) => handleSubmit(evt)}>Register</button>
             </form>
         </div>
     );
