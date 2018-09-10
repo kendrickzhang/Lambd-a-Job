@@ -8,6 +8,7 @@ import ShowAllStickyNotes     from './components/ShowAllStickyNotes';
 import EditStickyNote         from './components/EditStickyNote';
 import DeleteStickyNote       from './components/DeleteStickyNote';
 // import LoginWindow            from './components/LoginWindow';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 class App extends Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class App extends Component {
   }
 
   registerUser() {
-    const url = `http://localhost:3000/users`;
+    const url = `${BASE_URL}/users`;
     const body = {
       "user": {
         "email": this.state.email,
@@ -90,7 +91,7 @@ class App extends Component {
   
   // isLoggedIn(), logout(), login() are supplied from: https://git.generalassemb.ly/wdi-nyc-lambda/react-rails-token-auth
   login() {
-    const url = `http://localhost:3000/user_token`;
+    const url = `${BASE_URL}/user_token`;
     const body = {
       "auth": {
         "email": this.state.email,
@@ -136,7 +137,7 @@ class App extends Component {
   // CRUD functions for StickyNotes:
   createSticky() {
     const jwt = localStorage.getItem("jwt")
-    const url = `http://localhost:3000/sticky_notes`;
+    const url = `${BASE_URL}/sticky_notes`;
     const body = {
       "sticky_note": {
         "jobListing_url": this.state.jobListing_url,
@@ -169,7 +170,7 @@ class App extends Component {
       headers: { "Authorization": `Bearer ${jwt}` }
     }
 
-    fetch(`http://localhost:3000/sticky_notes`, init)
+    fetch(`${BASE_URL}/sticky_notes`, init)
     .then(res => res.json())
     .then(data => this.setState({
       sticky_notes: data,
@@ -179,7 +180,7 @@ class App extends Component {
 
   getOneNote(id) {
     const jwt = localStorage.getItem("jwt")
-    const url = `http://localhost:3000/sticky_notes/${id}`;
+    const url = `${BASE_URL}/sticky_notes/${id}`;
     const init = { 
       method: 'GET',
       headers: { "Authorization": `Bearer ${jwt}` },
@@ -193,7 +194,7 @@ class App extends Component {
 
   editSticky(id) {
     const jwt = localStorage.getItem("jwt")
-    const url = `http://localhost:3000/sticky_notes/${id}`;
+    const url = `${BASE_URL}/sticky_notes/${id}`;
     const body = {
       "sticky_note": {
         "jobListing_url": this.state.jobListing_url,
@@ -222,7 +223,7 @@ class App extends Component {
 
   deleteSticky(id) {
     const jwt = localStorage.getItem("jwt")
-    const url = `http://localhost:3000/sticky_notes/${id}`;
+    const url = `${BASE_URL}/sticky_notes/${id}`;
     const init = {
       method: 'DELETE',
       headers: {
