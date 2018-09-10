@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ShowOneStickyNote() {
+function ShowOneStickyNote(props) {
     return (
         <div>Show One Note</div>
     );

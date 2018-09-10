@@ -12,35 +12,35 @@ function CreateStickyNote(props) {
                 type="text"
                 placeholder="URL of Job Posting"
                 name="jobListing_url"
-                value={props.jobListing_url}
+                value={props.sticky_notes.jobListing_url}
                 onChange={props.onChange}
             />
             <input
                 type="text"
                 placeholder="Company Name"
                 name="company"
-                value={props.company}
+                value={props.sticky_notes.company}
                 onChange={props.onChange}
             />
             <input
                 type="text"
                 placeholder="Job Title"
                 name="title"
-                value={props.title}
+                value={this.state.title}
                 onChange={props.onChange}
             />
             <input
                 type="text"
                 placeholder="Location"
                 name="location"
-                value={props.location}
+                value={props.sticky_notes.location}
                 onChange={props.onChange}
             />
             <input
                 type="text"
                 placeholder="Application Status"
                 name="app_status"
-                value={props.app_status}
+                value={props.sticky_notes.app_status}
                 onChange={props.onChange}
             />
             <textarea
@@ -48,7 +48,7 @@ function CreateStickyNote(props) {
                 name="notes"
                 cols="30"
                 rows="10"
-                value={props.notes}
+                value={props.sticky_notes.notes}
                 onChange={props.onChange}
             />
             <button onClick={(evt) => handleCreateNote(evt)}>Add Sticky Note</button>

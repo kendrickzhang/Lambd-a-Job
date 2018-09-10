@@ -1,7 +1,7 @@
 import React from 'react';
 
 function UserRegistrationForm(props) {
-    function handleSubmit(evt) {
+    function handleRegister(evt) {
         evt.preventDefault();
         props.registerUser();
     }
@@ -23,7 +23,7 @@ function UserRegistrationForm(props) {
                     value={props.password}
                     onChange={props.onChange}
                 />
-                <button onClick={(evt) => handleSubmit(evt)}>Register</button>
+                <button onClick={(evt) => handleRegister(evt)}>Register</button>
             </form>
         </div>
     );
