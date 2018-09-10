@@ -1,9 +1,15 @@
 import React from 'react';
+import DeleteStickyNote from './DeleteStickyNote';
 
 function EditStickyNote(props) {
     function handleEditNote(evt) {
         evt.preventDefault();
-        props.editThisNote();
+        props.showCreateForm();
+    }
+    
+    function handleDeleteNote(evt) {
+        evt.preventDefault();
+        props.deleteSticky();
     }
 
     return (
@@ -12,7 +18,7 @@ function EditStickyNote(props) {
                 type="text"
                 placeholder="URL of Job Posting"
                 name="jobListing_url"
-                value={props.jobListing_url}
+                value={props.listingUrl}
                 onChange={props.onChange}
             />
             <input
@@ -40,7 +46,7 @@ function EditStickyNote(props) {
                 type="text"
                 placeholder="Application Status"
                 name="app_status"
-                value={props.app_status}
+                value={props.appStatus}
                 onChange={props.onChange}
             />
             <textarea
@@ -52,6 +58,7 @@ function EditStickyNote(props) {
                 onChange={props.onChange}
             />
             <button onClick={(evt) => {handleEditNote(evt)}}>Save Changes</button>
+            <button onClick={(evt) => {handleDeleteNote(evt)}}>Delete Sticky Note</button>
         </form>
     );
 }

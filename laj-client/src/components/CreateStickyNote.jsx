@@ -12,7 +12,7 @@ function CreateStickyNote(props) {
                 type="text"
                 placeholder="URL of Job Posting"
                 name="jobListing_url"
-                value={props.jobListing_url}
+                value={props.listingUrl}
                 onChange={props.onChange}
             />
             <input
@@ -40,7 +40,7 @@ function CreateStickyNote(props) {
                 type="text"
                 placeholder="Application Status"
                 name="app_status"
-                value={props.app_status}
+                value={props.appStatus}
                 onChange={props.onChange}
             />
             <textarea

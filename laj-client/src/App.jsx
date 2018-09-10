@@ -7,6 +7,7 @@ import CreateStickyNote       from './components/CreateStickyNote';
 import ShowAllStickyNotes     from './components/ShowAllStickyNotes';
 import EditStickyNote         from './components/EditStickyNote';
 import DeleteStickyNote       from './components/DeleteStickyNote';
+// import LoginWindow            from './components/LoginWindow';
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class App extends Component {
       "notes": '',
       // View states:
       currentView: '',
+      loginForm: null,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -42,8 +44,12 @@ class App extends Component {
     // Bind StickyNotes functions
     this.createSticky = this.createSticky.bind(this);
     this.getNotes = this.getNotes.bind(this);
+    this.deleteSticky = this.deleteSticky.bind(this);
     // Bind views:
-    this.switchForm = this.switchForm.bind(this);
+    this.handleEditBtn = this.handleEditBtn.bind(this);
+    this.showCreateForm = this.showCreateForm.bind(this);
+    this.showLoginForm = this.showLoginForm.bind(this);
+    this.showRegisterForm = this.showRegisterForm.bind(this);
   }
 
   componentDidMount() {
@@ -235,15 +241,37 @@ class App extends Component {
   }
 
   // Conditionally rendering forms:
-  switchForm() {
+  showLoginForm() {
+    this.setState({
+      loginForm: true,
+    })
+  }
+  showRegisterForm() {
+    this.setState({
+      loginForm: false,
+    })
+  }
+  handleEditBtn() {
     this.setState({
       editButton: true,
+    })
+  }
+  showCreateForm() {
+    this.setState({
+      editButton: false,
     })
   }
 
   render() {
     return (
       <div className="App">
+      {/*<div>
+        <LoginWindow
+          showLoginForm={this.showLoginForm}
+          showRegisterForm={this.showRegisterForm}
+          onChange={this.handleChange}
+        />
+      </div>*/}
         <div>
           <UserRegistrationForm
             onChange={this.handleChange}
@@ -277,7 +305,9 @@ class App extends Component {
             appStatus={this.state.app_status}
             notes={this.state.notes}
             editButton={this.state.editButton}
-            switchForm={this.switchForm}
+            handleEditBtn={this.handleEditBtn}
+            showCreateForm={this.showCreateForm}
+            deleteSticky={this.deleteSticky}
           />
         </div>
       </div>
