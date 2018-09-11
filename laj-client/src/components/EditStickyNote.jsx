@@ -10,7 +10,7 @@ function EditStickyNote(props) {
 
     function handleDeleteNote(evt) {
         evt.preventDefault();
-        props.deleteSticky();
+        props.deleteSticky(props.current_note);
     }
 
     return (

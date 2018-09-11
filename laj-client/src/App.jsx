@@ -45,9 +45,9 @@ class App extends Component {
     this.logout = this.logout.bind(this);
     // Bind StickyNotes functions
     this.createSticky = this.createSticky.bind(this);
-    this.editSticky = this.editSticky.bind(this);
     this.getNotes = this.getNotes.bind(this);
     this.getOneNote = this.getOneNote.bind(this);
+    this.editSticky = this.editSticky.bind(this);
     this.deleteSticky = this.deleteSticky.bind(this);
     // Bind views:
     this.handleEditBtn = this.handleEditBtn.bind(this);
