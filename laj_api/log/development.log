@@ -4468,3 +4468,12 @@ Processing by StickyNotesController#update as JSON
 Completed 200 OK in 50ms (Views: 0.4ms | ActiveRecord: 17.6ms)
 
 
+Started GET "/sticky_notes" for 127.0.0.1 at 2018-09-11 17:56:08 -0400
+Processing by StickyNotesController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+  [1m[36mStickyNote Load (0.6ms)[0m  [1m[34mSELECT "sticky_notes".* FROM "sticky_notes"[0m
+  ↳ app/controllers/sticky_notes_controller.rb:8
+Completed 200 OK in 18ms (Views: 15.3ms | ActiveRecord: 1.1ms)
+
+

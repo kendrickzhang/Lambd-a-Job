@@ -190,9 +190,6 @@ class App extends Component {
       mode: 'cors',
     }
 
-    console.log(id);
-    
-
     fetch(url, init)
       .then(res => res.json())
       .then( note => this.setState({
