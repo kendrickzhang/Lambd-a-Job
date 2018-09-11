@@ -7,8 +7,9 @@ import CreateStickyNote       from './components/CreateStickyNote';
 import ShowAllStickyNotes     from './components/ShowAllStickyNotes';
 import EditStickyNote         from './components/EditStickyNote';
 import DeleteStickyNote       from './components/DeleteStickyNote';
+import LoginWindow from './components/LoginWindow';
 // import LoginWindow            from './components/LoginWindow';
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
 
 class App extends Component {
   constructor(props) {
@@ -21,16 +22,16 @@ class App extends Component {
       // StickyNote CRUD states:
       create_note: '',
       sticky_notes: [],
-      current_note: {},
+      current_note: '',
       edit_note: '',
       editButton: null,
       // StickyNote attributes:
-      "jobListing_url": '',
-      "company": '',
-      "title": '',
-      "location": '',
-      "app_status": '',
-      "notes": '',
+      jobListing_url: '',
+      company: '',
+      title: '',
+      location: '',
+      app_status: '',
+      notes: '',
       // View states:
       currentView: '',
       loginForm: null,
@@ -44,7 +45,9 @@ class App extends Component {
     this.logout = this.logout.bind(this);
     // Bind StickyNotes functions
     this.createSticky = this.createSticky.bind(this);
+    this.editSticky = this.editSticky.bind(this);
     this.getNotes = this.getNotes.bind(this);
+    this.getOneNote = this.getOneNote.bind(this);
     this.deleteSticky = this.deleteSticky.bind(this);
     // Bind views:
     this.handleEditBtn = this.handleEditBtn.bind(this);
@@ -187,8 +190,14 @@ class App extends Component {
       mode: 'cors',
     }
 
+    console.log(id);
+    
+
     fetch(url, init)
       .then(res => res.json())
+      .then( note => this.setState({
+        current_note: note,
+      }))
       .catch(err => console.log(err));
   }
 
@@ -252,9 +261,10 @@ class App extends Component {
       loginForm: false,
     })
   }
-  handleEditBtn() {
+  handleEditBtn(note) {
     this.setState({
       editButton: true,
+      current_note: note,
     })
   }
   showCreateForm() {
@@ -264,53 +274,42 @@ class App extends Component {
   }
 
   render() {
+    const checkLogin = this.state.isLoggedIn
+    ? <div>
+        <ShowAllStickyNotes
+          isLoggedIn={this.state.isLoggedIn}
+          sticky_notes={this.state.sticky_notes}
+          current_note={this.state.current_note}
+          onChange={this.handleChange}
+          createSticky={this.createSticky}
+          editSticky={this.editSticky}
+          listingUrl={this.state.jobListing_url}
+          company={this.state.company}
+          title={this.state.title}
+          location={this.state.location}
+          appStatus={this.state.app_status}
+          notes={this.state.notes}
+          editButton={this.state.editButton}
+          handleEditBtn={this.handleEditBtn}
+          showCreateForm={this.showCreateForm}
+          deleteSticky={this.deleteSticky}
+          getOneNote={this.getOneNote}
+        />
+      </div>
+    : <div>
+        <LoginWindow
+          onChange={this.handleChange}
+          email={this.state.email}
+          password={this.state.password}
+          registerUser={this.registerUser}
+          login={this.login}
+          logout={this.logout}
+        />
+      </div>
+
     return (
       <div className="App">
-      {/*<div>
-        <LoginWindow
-          showLoginForm={this.showLoginForm}
-          showRegisterForm={this.showRegisterForm}
-          onChange={this.handleChange}
-        />
-      </div>*/}
-        <div>
-          <UserRegistrationForm
-            onChange={this.handleChange}
-            email={this.state.email}
-            password={this.state.password}
-            registerUser={this.registerUser}
-            login={this.login}
-          />
-        </div>
-        <div>
-          <UserLoginForm
-            onChange={this.handleChange}
-            email={this.state.email}
-            password={this.state.password}
-            login={this.login}
-            logout={this.logout}
-          />
-        </div>
-        <div>
-          <ShowAllStickyNotes
-            isLoggedIn={this.state.isLoggedIn}
-            sticky_notes={this.state.sticky_notes}
-            current_note={this.state.current_note}
-            onChange={this.handleChange}
-            createSticky={this.createSticky}
-            editSticky={this.editSticky}
-            listingUrl={this.state.jobListing_url}
-            company={this.state.company}
-            title={this.state.title}
-            location={this.state.location}
-            appStatus={this.state.app_status}
-            notes={this.state.notes}
-            editButton={this.state.editButton}
-            handleEditBtn={this.handleEditBtn}
-            showCreateForm={this.showCreateForm}
-            deleteSticky={this.deleteSticky}
-          />
-        </div>
+        { checkLogin }
       </div>
     );
   }

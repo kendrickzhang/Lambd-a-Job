@@ -3,9 +3,9 @@ import CreateStickyNote from './CreateStickyNote';
 import EditStickyNote from './EditStickyNote';
 
 function ShowAllStickyNotes(props) {
-    function showEdit(evt) {
+    function showEdit(evt, id) {
         evt.preventDefault();
-        props.handleEditBtn();
+        props.handleEditBtn(id);
     }
     const displayAll = props.isLoggedIn 
         ? props.sticky_notes.map((stickyNote) => {
@@ -17,7 +17,7 @@ function ShowAllStickyNotes(props) {
                         <p>Location: {stickyNote.location}</p>
                         <p>Application Status: {stickyNote.app_status}</p>
                         <p>Notes: {stickyNote.notes}</p>
-                        <button onClick={(evt) => showEdit(evt)}>Edit Sticky</button>
+                        <button onClick={(evt) => showEdit(evt, stickyNote.id)}>Edit Sticky</button>
 
                     </div>
                 )
@@ -34,6 +34,8 @@ function ShowAllStickyNotes(props) {
                 props.editButton
                 ?
                 <EditStickyNote
+                    onChange={props.onChange}
+                    current_note={props.current_note}
                     editButton={props.editButton}
                     showCreateForm={props.showCreateForm}
                     listingUrl={props.listingUrl}
@@ -43,9 +45,11 @@ function ShowAllStickyNotes(props) {
                     appStatus={props.appStatus}
                     notes={props.notes}
                     deleteSticky={props.deleteSticky}
+                    editSticky={props.editSticky}
                 />
                 :
                 <CreateStickyNote
+                    onChange={props.onChange}
                     createSticky={props.createSticky}
                     listingUrl={props.listingUrl}
                     company={props.company}

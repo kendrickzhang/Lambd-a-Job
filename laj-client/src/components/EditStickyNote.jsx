@@ -5,8 +5,9 @@ function EditStickyNote(props) {
     function handleEditNote(evt) {
         evt.preventDefault();
         props.showCreateForm();
+        props.editSticky(props.current_note);
     }
-    
+
     function handleDeleteNote(evt) {
         evt.preventDefault();
         props.deleteSticky();

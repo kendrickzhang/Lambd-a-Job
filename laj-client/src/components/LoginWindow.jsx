@@ -1,30 +1,29 @@
 import React from 'react';
-import UserRegistrationForm   from './components/UserRegistrationForm';
-import UserLoginForm          from './components/UserLoginForm';
+import UserRegistrationForm   from './UserRegistrationForm';
+import UserLoginForm          from './UserLoginForm';
 
 function LoginWindow(props) {
-    toggleRegister(evt) {
-        evt.preventDefault();
-    }
     return (
-        <div>
-          <UserRegistrationForm
-            onChange={this.handleChange}
-            email={this.state.email}
-            password={this.state.password}
-            registerUser={this.registerUser}
-            login={this.login}
-          />
-        </div>
+      <div>
         <div>
           <UserLoginForm
-            onChange={this.handleChange}
-            email={this.state.email}
-            password={this.state.password}
-            login={this.login}
-            logout={this.logout}
+            onChange={props.onChange}
+            email={props.email}
+            password={props.password}
+            login={props.login}
+            logout={props.logout}
           />
         </div>
+        <div>
+          <UserRegistrationForm
+            onChange={props.onChange}
+            email={props.email}
+            password={props.password}
+            registerUser={props.registerUser}
+            login={props.login}
+          />
+        </div>
+      </div>
     );
 }
 
