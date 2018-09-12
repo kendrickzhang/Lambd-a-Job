@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'bulma/css/bulma.css';
 import './App.css';
 
 import UserRegistrationForm   from './components/UserRegistrationForm';
@@ -7,8 +8,10 @@ import CreateStickyNote       from './components/CreateStickyNote';
 import ShowAllStickyNotes     from './components/ShowAllStickyNotes';
 import EditStickyNote         from './components/EditStickyNote';
 import DeleteStickyNote       from './components/DeleteStickyNote';
-import LoginWindow from './components/LoginWindow';
+import LoginWindow            from './components/LoginWindow';
+import HpHeader               from './components/HpHeader';
 // import LoginWindow            from './components/LoginWindow';
+
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
 
 class App extends Component {
@@ -25,6 +28,7 @@ class App extends Component {
       current_note: '',
       edit_note: '',
       editButton: null,
+      deleted: null,
       // StickyNote attributes:
       jobListing_url: '',
       company: '',
@@ -315,13 +319,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header>Header</header>
-        <button onClick={
-          (evt) => {
-            evt.preventDefault();
-            this.logout();
-          }}
-        >Logout</button>
+        <HpHeader
+          isLoggedIn={this.state.isLoggedIn}
+          logout={this.logout}
+        />
         <div>{ checkLogin }</div>
       </div>
     );

@@ -21,7 +21,6 @@ function ShowAllStickyNotes(props) {
                         <p>Application Status: {stickyNote.app_status}</p>
                         <p>Notes: {stickyNote.notes}</p>
                         <button onClick={(evt) => showEdit(evt, stickyNote.id)}>Edit Sticky</button>
-
                     </div>
                 )
             })
@@ -36,31 +35,35 @@ function ShowAllStickyNotes(props) {
             {
                 props.editButton
                 ?
-                <EditStickyNote
-                    onChange={props.onChange}
-                    current_note={props.current_note}
-                    editButton={props.editButton}
-                    showCreateForm={props.showCreateForm}
-                    listingUrl={props.listingUrl}
-                    company={props.company}
-                    title={props.title}
-                    location={props.location}
-                    appStatus={props.appStatus}
-                    notes={props.notes}
-                    deleteSticky={props.deleteSticky}
-                    editSticky={props.editSticky}
-                />
+                <div>
+                    <EditStickyNote
+                        onChange={props.onChange}
+                        current_note={props.current_note}
+                        editButton={props.editButton}
+                        showCreateForm={props.showCreateForm}
+                        listingUrl={props.listingUrl}
+                        company={props.company}
+                        title={props.title}
+                        location={props.location}
+                        appStatus={props.appStatus}
+                        notes={props.notes}
+                        deleteSticky={props.deleteSticky}
+                        editSticky={props.editSticky}
+                    />
+                </div>
                 :
-                <CreateStickyNote
-                    onChange={props.onChange}
-                    createSticky={props.createSticky}
-                    listingUrl={props.listingUrl}
-                    company={props.company}
-                    title={props.title}
-                    location={props.location}
-                    appStatus={props.appStatus}
-                    notes={props.notes}
-                />
+                <div>
+                    <CreateStickyNote
+                        onChange={props.onChange}
+                        createSticky={props.createSticky}
+                        listingUrl={props.listingUrl}
+                        company={props.company}
+                        title={props.title}
+                        location={props.location}
+                        appStatus={props.appStatus}
+                        notes={props.notes}
+                    />
+                </div>
             }
             </div>
         </div>
