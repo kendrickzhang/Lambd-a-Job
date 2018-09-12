@@ -2,12 +2,15 @@ import React from 'react';
 import DeleteStickyNote from './DeleteStickyNote';
 
 function EditStickyNote(props) {
+    // set editButton state to false with showCreateForm() when Save Changes button is clicked
+    // invokes editSticky() for PUT request with current_note props
     function handleEditNote(evt) {
         evt.preventDefault();
         props.showCreateForm();
         props.editSticky(props.current_note);
     }
 
+    // invokes deleteSticky() when Delete button is clicked with current_note props
     function handleDeleteNote(evt) {
         evt.preventDefault();
         props.deleteSticky(props.current_note);

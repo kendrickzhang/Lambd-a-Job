@@ -3,10 +3,13 @@ import CreateStickyNote from './CreateStickyNote';
 import EditStickyNote from './EditStickyNote';
 
 function ShowAllStickyNotes(props) {
+    // editButton state is true when Edit Sticky button is clicked, targets specific StickNote id
     function showEdit(evt, id) {
         evt.preventDefault();
         props.handleEditBtn(id);
     }
+
+    // conditionally render showAll StickyNotes when user is authenticated with token
     const displayAll = props.isLoggedIn 
         ? props.sticky_notes.map((stickyNote) => {
                 return (

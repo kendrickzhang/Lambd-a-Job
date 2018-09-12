@@ -9,19 +9,21 @@ function UserRegistrationForm(props) {
     return (
         <div>
             <form>
+                <label htmlFor="email">Email:</label>
                 <input
-                    type="email"
-                    placeholder="Email"
                     name="email"
+                    id="email"
+                    onChange={props.onChange}
                     value={props.email}
-                    onChange={props.onChange}
+                    type="email"
                 />
+                <label htmlFor="password">Password:</label>
                 <input
-                    type="password"
-                    placeholder="Password"
                     name="password"
-                    value={props.password}
+                    id="password"
                     onChange={props.onChange}
+                    value={props.value}
+                    type="password"
                 />
                 <button onClick={(evt) => handleRegister(evt)}>Register</button>
             </form>

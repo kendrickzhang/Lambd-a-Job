@@ -34,7 +34,7 @@ class App extends Component {
       notes: '',
       // View states:
       currentView: '',
-      loginForm: null,
+      toggleLoginForm: null,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -92,7 +92,8 @@ class App extends Component {
       .catch(err => console.log(err));
   }
   
-  // isLoggedIn(), logout(), login() are supplied from: https://git.generalassemb.ly/wdi-nyc-lambda/react-rails-token-auth
+  // login(), isLoggedIn(), logout() are supplied from:
+  // https://git.generalassemb.ly/wdi-nyc-lambda/react-rails-token-auth
   login() {
     const url = `${BASE_URL}/user_token`;
     const body = {
@@ -248,22 +249,27 @@ class App extends Component {
   }
 
   // Conditionally rendering forms:
+
+  // toggleLoginForm: false => shows login form || true => shows register form
   showLoginForm() {
     this.setState({
-      loginForm: true,
+      toggleLoginForm: false,
     })
   }
+  // toggleLoginForm: false => shows register form
   showRegisterForm() {
     this.setState({
-      loginForm: false,
+      toggleLoginForm: true,
     })
   }
+  // editButton: true => when edit StickyNote button is clicked, current_note set to target note
   handleEditBtn(note) {
     this.setState({
       editButton: true,
       current_note: note,
     })
   }
+  // always show create sticky form unless editButton state changes
   showCreateForm() {
     this.setState({
       editButton: false,
@@ -301,12 +307,22 @@ class App extends Component {
           registerUser={this.registerUser}
           login={this.login}
           logout={this.logout}
+          showLoginForm={this.showLoginForm}
+          showRegisterForm={this.showRegisterForm}
+          toggleLoginForm={this.state.toggleLoginForm}
         />
       </div>
 
     return (
       <div className="App">
-        { checkLogin }
+        <header>Header</header>
+        <button onClick={
+          (evt) => {
+            evt.preventDefault();
+            this.logout();
+          }}
+        >Logout</button>
+        <div>{ checkLogin }</div>
       </div>
     );
   }

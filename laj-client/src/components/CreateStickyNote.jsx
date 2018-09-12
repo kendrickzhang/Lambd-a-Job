@@ -1,6 +1,7 @@
 import React from 'react';
 
 function CreateStickyNote(props) {
+    // invokes createSticky() when Add Sticky Note button is clicked
     function handleCreateNote(evt) {
         evt.preventDefault();
         props.createSticky();

@@ -31,7 +31,7 @@ function UserLoginForm(props) {
                     type="password"
                 />
                 <button onClick={(evt) => handleLogin(evt)}>Login</button>
-                <button onClick={(evt) => handleLogout(evt)}>Logout</button>
+                {/* <button onClick={(evt) => handleLogout(evt)}>Logout</button> */}
             </form>
         </div>
     );
