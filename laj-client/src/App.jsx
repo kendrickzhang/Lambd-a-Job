@@ -13,7 +13,7 @@ import HpHeader               from './components/HpHeader';
 import Dashboard              from './components/Dashboard';
 // import LoginWindow            from './components/LoginWindow';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 class App extends Component {
   constructor(props) {
