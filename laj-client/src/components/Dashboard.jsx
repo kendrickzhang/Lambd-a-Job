@@ -5,8 +5,8 @@ import RightPaneHp          from './RightPaneHP';
 
 function Dashboard(props) {
     return (
-        <div className="dashboardContainer">
-            <div className="leftPaneContainer">
+        <div className="dashPaneContainer">
+            <div className="dashboardLeftPane">
                 <LeftPaneHp
                     isLoggedIn={props.isLoggedIn}
                     sticky_notes={props.sticky_notes}
@@ -27,7 +27,7 @@ function Dashboard(props) {
                     getOneNote={props.getOneNote}
                 />
             </div>
-            <div className="rightPaneContainer">
+            <div className="dashboardRightPane">
                 <RightPaneHp
                     onChange={props.onChange}
                 />

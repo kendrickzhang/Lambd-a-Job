@@ -1,6 +1,4 @@
 import React from 'react';
-import 'bulma/css/bulma.css';
-import '../App.css';
 
 import CreateStickyNote     from './CreateStickyNote';
 import EditStickyNote       from './EditStickyNote';
@@ -30,17 +28,15 @@ function ShowAllStickyNotes(props) {
         : "UNAUTHORIZED";
     
     return (
-        <div className="showAllContainer">
-            <div className="displayAllRender">
+        <div className="crudContainer">
+            <div className="stickyNotesContainer">
                 { displayAll }
             </div>
-            <div className="crudFormContainer">
-            {
+            <div className="crudFormContainer">{
                 props.editButton
-                ?
-                <div className="createEditContainer">
+                ? <div className="createOrEditForm">
                     <EditStickyNote
-                        onChange={props.onChange}
+                    onChange={props.onChange}
                         current_note={props.current_note}
                         editButton={props.editButton}
                         showCreateForm={props.showCreateForm}
@@ -54,8 +50,7 @@ function ShowAllStickyNotes(props) {
                         editSticky={props.editSticky}
                     />
                 </div>
-                :
-                <div className="createEditContainer">
+                : <div className="createOrEditForm">
                     <CreateStickyNote
                         onChange={props.onChange}
                         createSticky={props.createSticky}
@@ -67,8 +62,7 @@ function ShowAllStickyNotes(props) {
                         notes={props.notes}
                     />
                 </div>
-            }
-            </div>
+            }</div>
         </div>
     );
 }

@@ -7,63 +7,144 @@ font-family: 'Montserrat', sans-serif;
 
 .App {
     display: grid;
-    grid-template-rows: 10% 5% 80% 5%;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 10% 5% 82% 3%;
+    grid-template-columns: 15% 10% 5% 15% 10% 15% 15% 15%;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0;
+    padding: 0;
+}
+button:active, button:focus {
+    outline: none;
 }
 
+/* Header Properties */
 .mainHeader {
     grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row: 1;
+    grid-column-end: 9;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    height: 100%;
+    width: 100%;
+    background-color: royalblue;
 }
+.headerComponentTag {
+    display: flex;
+}
+.appTitle {
+    text-align: center;
+    flex: 9;
+}
+.headerButton {
+    flex: 1;
+}
+
+
+/* Login Window Properties */
+.loginWindowContainer {
+    border: 1px solid black;
+    grid-column-start: 1;
+    grid-column-end: 9;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    height: 200px;
+    width: 500px;
+}
+
 
 /* Dashboard Properties */
-.dashboardContainer {
-    display: flex;
-    border: 1px solid green;
-    width: 100vw;
-    height: 100vh;
+.dashboard {
+    height: 100%;
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 9;
     grid-row-start: 1;
-    grid-row-end: 5;
+    grid-row-end: 4;
 }
-.leftPaneContainer {
-    flex: 2;
-    border: 1px solid yellow;
-}
-.rightPaneContainer {
-    flex: 3;
-    border: 1px solid blue;
+.dashPaneContainer {
+    display: flex;
 }
 
-/* ShowAll Properties */
-.showAllContainer {
-    display: flex;
-    border: 1px solid;
-    width: 500px;
-    height: 660px;
+/* Dashboard Left Pane's properties */
+.dashboardLeftPane {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    height: 100vh;
+    width: 100vw;
 }
-.displayAllRender {
-    flex: 3;
+/* ShowAll Properties */
+.crudContainer {
+    display: flex;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    height: 100%;
+}
+.stickyNotesContainer {
+    margin-right: 5px;
     overflow: auto;
 }
-
-.crudFormContainer {
-    flex: 2;
-}
 .eachStickyNote {
-    border: 1px solid black;
     width: 210px;
     height: 210px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 8pt;
-    text-align: justify;
-    margin: 10px 10px 10px 10px;
-}
-.createEditContainer {
     border: 1px solid black;
-    width: 210px;
-    height: 420px;
-    margin: 10px 10px 10px 10px;
-    position: fixed;
+    margin: 5px 10px 5px 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10pt;
+    text-align: justify;
+}
+.crudFormContainer {
+    width: 180px;
+    height: 400px;
+    border: 1px solid black;
+    margin: 5px 5px 5px 5px;
+}
+.createOrEditForm {
+    margin: 5px 5px 5px 5px;
 }
 
+/* Dashboard Right Pane's Properties */
+.dashboardRightPane {
+    grid-column-start: 5;
+    grid-column-end: 9;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    height: 100vh;
+    width: 100vw;
+}
+.jobPortalContainer {
+    height: 100vh;
+    width: 100vw;
+}
+.jobSearchFormContainer {
+    margin: 0 auto;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 5;
+    grid-column-end: 9;
+}
+.jobSearchViewContainer {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 5;
+    grid-column-end: 9;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Footer Properties */
+footer {
+    grid-column-start: 1;
+    grid-column-end: 9;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    font-family: 'Oswald', sans-serif;
+    font-size: 8pt;
+    text-align: center;
+    background-color: royalblue;
+}

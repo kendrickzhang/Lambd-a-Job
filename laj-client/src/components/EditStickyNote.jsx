@@ -55,9 +55,10 @@ function EditStickyNote(props) {
             />
             <textarea
                 placeholder="Notes"
+                maxLength="420"
                 name="notes"
-                cols="30"
-                rows="10"
+                cols="20"
+                rows="15"
                 value={props.notes}
                 onChange={props.onChange}
             />

@@ -283,7 +283,7 @@ class App extends Component {
 
   render() {
     const checkLogin = this.state.isLoggedIn
-    ? <div>
+    ? <div className="dashboard">
         <Dashboard
           isLoggedIn={this.state.isLoggedIn}
           sticky_notes={this.state.sticky_notes}
@@ -304,7 +304,8 @@ class App extends Component {
           getOneNote={this.getOneNote}
         />
       </div>
-    : <div>
+    : <div className="loginWindowContainer">
+        <center>
         <LoginWindow
           onChange={this.handleChange}
           email={this.state.email}
@@ -316,15 +317,19 @@ class App extends Component {
           showRegisterForm={this.showRegisterForm}
           toggleLoginForm={this.state.toggleLoginForm}
         />
-      </div>
+        </center>
+      </div>;
 
     return (
       <div className="App">
-        <HpHeader
-          isLoggedIn={this.state.isLoggedIn}
-          logout={this.logout}
-        />
+        <div className="mainHeader">
+          <HpHeader
+            isLoggedIn={this.state.isLoggedIn}
+            logout={this.logout}
+          />
+        </div>
         <div>{ checkLogin }</div>
+        <footer>Created By Kendrick Zhang</footer>
       </div>
     );
   }

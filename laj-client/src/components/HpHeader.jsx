@@ -10,9 +10,9 @@ function HpHeader(props) {
         </div>
         : "Please Log In";
     return (
-        <header>
-            <div>Lambd a Job</div>
-            <div>{ headerButton }</div>
+        <header className="headerComponentTag">
+            <div className="appTitle">Lambd a Job</div>
+            <div className="headerButton">{ headerButton }</div>
         </header>
     );
 }

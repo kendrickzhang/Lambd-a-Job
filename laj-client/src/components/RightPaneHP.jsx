@@ -5,13 +5,13 @@ import JobListingView   from './JobListingView';
 
 function RightPaneHP(props) {
     return (
-        <div>
-            <div>
+        <div className="jobPortalContainer">
+            <div className="jobSearchFormContainer">
                 <JobSearchForm
                     onChange={props.onChange}
                 />
             </div>
-            <div>
+            <div className="jobSearchViewContainer">
                 <JobListingView
                     onChange={props.onChange}
                 />

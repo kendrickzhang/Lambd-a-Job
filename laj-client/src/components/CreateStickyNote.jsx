@@ -8,7 +8,7 @@ function CreateStickyNote(props) {
     }
 
     return (
-        <form>
+        <form className="createForm">
             <input
                 type="text"
                 placeholder="URL of Job Posting"
@@ -46,9 +46,10 @@ function CreateStickyNote(props) {
             />
             <textarea
                 placeholder="Notes"
+                maxLength="420"
                 name="notes"
-                cols="30"
-                rows="10"
+                cols="20"
+                rows="15"
                 value={props.notes}
                 onChange={props.onChange}
             />

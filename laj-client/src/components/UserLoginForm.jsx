@@ -6,34 +6,32 @@ function UserLoginForm(props) {
         props.login();
     }
 
-    function handleLogout(evt) {
-        evt.preventDefault();
-        props.logout();
-    }
+    // function handleLogout(evt) {
+    //     evt.preventDefault();
+    //     props.logout();
+    // }
 
     return (
-        <div>
-            <form>
-                <label htmlFor="email">Email:</label>
-                <input
-                    name="email"
-                    id="email"
-                    onChange={props.onChange}
-                    value={props.email}
-                    type="email"
-                />
-                <label htmlFor="password">Password:</label>
-                <input
-                    name="password"
-                    id="password"
-                    onChange={props.onChange}
-                    value={props.value}
-                    type="password"
-                />
-                <button onClick={(evt) => handleLogin(evt)}>Login</button>
-                {/* <button onClick={(evt) => handleLogout(evt)}>Logout</button> */}
-            </form>
-        </div>
+        <form>
+            <label htmlFor="email">Email:</label>
+            <input
+                name="email"
+                id="email"
+                onChange={props.onChange}
+                value={props.email}
+                type="email"
+            />
+            <label htmlFor="password">Password:</label>
+            <input
+                name="password"
+                id="password"
+                onChange={props.onChange}
+                value={props.value}
+                type="password"
+            />
+            <button onClick={(evt) => handleLogin(evt)}>Login</button>
+            {/* <button onClick={(evt) => handleLogout(evt)}>Logout</button> */}
+        </form>
     );
 }
 
