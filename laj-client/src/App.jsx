@@ -10,6 +10,7 @@ import EditStickyNote         from './components/EditStickyNote';
 import DeleteStickyNote       from './components/DeleteStickyNote';
 import LoginWindow            from './components/LoginWindow';
 import HpHeader               from './components/HpHeader';
+import Dashboard              from './components/Dashboard';
 // import LoginWindow            from './components/LoginWindow';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
@@ -283,7 +284,7 @@ class App extends Component {
   render() {
     const checkLogin = this.state.isLoggedIn
     ? <div>
-        <ShowAllStickyNotes
+        <Dashboard
           isLoggedIn={this.state.isLoggedIn}
           sticky_notes={this.state.sticky_notes}
           current_note={this.state.current_note}

@@ -1,6 +1,9 @@
 import React from 'react';
-import CreateStickyNote from './CreateStickyNote';
-import EditStickyNote from './EditStickyNote';
+import 'bulma/css/bulma.css';
+import '../App.css';
+
+import CreateStickyNote     from './CreateStickyNote';
+import EditStickyNote       from './EditStickyNote';
 
 function ShowAllStickyNotes(props) {
     // editButton state is true when Edit Sticky button is clicked, targets specific StickNote id
@@ -13,7 +16,7 @@ function ShowAllStickyNotes(props) {
     const displayAll = props.isLoggedIn 
         ? props.sticky_notes.map((stickyNote) => {
                 return (
-                    <div key={stickyNote.id}>
+                    <div className="eachStickyNote" key={stickyNote.id}>
                         <p>Listing URL: {stickyNote.jobListing_url}</p>
                         <p>Company: {stickyNote.company}</p>
                         <p>Title: {stickyNote.title}</p>
@@ -27,15 +30,15 @@ function ShowAllStickyNotes(props) {
         : "UNAUTHORIZED";
     
     return (
-        <div>
-            <div>
+        <div className="showAllContainer">
+            <div className="displayAllRender">
                 { displayAll }
             </div>
-            <div>
+            <div className="crudFormContainer">
             {
                 props.editButton
                 ?
-                <div>
+                <div className="createEditContainer">
                     <EditStickyNote
                         onChange={props.onChange}
                         current_note={props.current_note}
@@ -52,7 +55,7 @@ function ShowAllStickyNotes(props) {
                     />
                 </div>
                 :
-                <div>
+                <div className="createEditContainer">
                     <CreateStickyNote
                         onChange={props.onChange}
                         createSticky={props.createSticky}
