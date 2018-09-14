@@ -4,15 +4,15 @@ import DeleteStickyNote from './DeleteStickyNote';
 function EditStickyNote(props) {
     // set editButton state to false with showCreateForm() when Save Changes button is clicked
     // invokes editSticky() for PUT request with current_note props
-    function handleEditNote(evt) {
-        evt.preventDefault();
+    function handleEditNote() {
+        // evt.preventDefault();
         props.showCreateForm();
         props.editSticky(props.current_note);
     }
 
     // invokes deleteSticky() when Delete button is clicked with current_note props
-    function handleDeleteNote(evt) {
-        evt.preventDefault();
+    function handleDeleteNote() {
+        // evt.preventDefault();
         props.deleteSticky(props.current_note);
     }
 
@@ -62,8 +62,8 @@ function EditStickyNote(props) {
                 value={props.notes}
                 onChange={props.onChange}
             />
-            <button onClick={(evt) => {handleEditNote(evt)}}>Save Changes</button>
-            <button onClick={(evt) => {handleDeleteNote(evt)}}>Delete Sticky Note</button>
+            <button onClick={() => {handleEditNote()}}>Save Changes</button>
+            <button onClick={() => {handleDeleteNote()}}>Delete Sticky Note</button>
         </form>
     );
 }

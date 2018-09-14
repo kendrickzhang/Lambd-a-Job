@@ -2,8 +2,8 @@ import React from 'react';
 
 function CreateStickyNote(props) {
     // invokes createSticky() when Add Sticky Note button is clicked
-    function handleCreateNote(evt) {
-        evt.preventDefault();
+    function handleCreateNote() {
+        // evt.preventDefault();
         props.createSticky();
     }
 
@@ -53,7 +53,7 @@ function CreateStickyNote(props) {
                 value={props.notes}
                 onChange={props.onChange}
             />
-            <button onClick={(evt) => handleCreateNote(evt)}>Add Sticky Note</button>
+            <button onClick={() => handleCreateNote()}>Add Sticky Note</button>
         </form>
     );
 }
